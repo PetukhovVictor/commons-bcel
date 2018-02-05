@@ -185,36 +185,6 @@ public class InstructionList implements Iterable<InstructionHandle> {
         }
         byte_positions = new int[count]; // Trim to proper size
         System.arraycopy(pos, 0, byte_positions, 0, count);
-        /*
-         * Pass 2: Look for BranchInstruction and update their targets, i.e., convert offsets to instruction handles.
-         */
-        for (int i = 0; i < count; i++) {
-            if (ihs[i] instanceof BranchHandle) {
-                final BranchInstruction bi = (BranchInstruction) ihs[i].getInstruction();
-                int target = bi.getPosition() + bi.getIndex(); /*
-                                                                * Byte code position: relative -> absolute.
-                                                                */
-                // Search for target position
-                InstructionHandle ih = findHandle(ihs, pos, count, target);
-                if (ih == null) {
-                    throw new ClassGenException("Couldn't find target for branch: " + bi);
-                }
-                bi.setTarget(ih); // Update target
-                // If it is a Select instruction, update all branch targets
-                if (bi instanceof Select) { // Either LOOKUPSWITCH or TABLESWITCH
-                    final Select s = (Select) bi;
-                    final int[] indices = s.getIndices();
-                    for (int j = 0; j < indices.length; j++) {
-                        target = bi.getPosition() + indices[j];
-                        ih = findHandle(ihs, pos, count, target);
-                        if (ih == null) {
-                            throw new ClassGenException("Couldn't find target for switch: " + bi);
-                        }
-                        s.setTarget(j, ih); // Update target
-                    }
-                }
-            }
-        }
     }
 
     /**
