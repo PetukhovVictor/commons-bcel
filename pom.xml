@@ -31,7 +31,7 @@
   </parent>
 
   <groupId>org.apache.bcel</groupId>
-  <artifactId>bcel</artifactId>
+  <artifactId>bcel-light</artifactId>
   <packaging>jar</packaging>
   <version>6.3-SNAPSHOT</version>
   <name>Apache Commons BCEL</name>
