@@ -40,7 +40,7 @@
  |                                                                      |
  +======================================================================+
 --->
-Apache Commons BCEL
+Apache Commons BCEL (light)
 ===================
 
 [![Build Status](https://travis-ci.org/apache/bcel.svg?branch=master)](https://travis-ci.org/apache/bcel)
@@ -49,6 +49,8 @@ Apache Commons BCEL
 [![License](http://img.shields.io/:license-apache-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 Apache Commons Bytecode Engineering Library
+
+**This library differs from the [original](https://github.com/apache/commons-bcel) lack of a handles for instruction assignment stage.**
 
 Documentation
 -------------
